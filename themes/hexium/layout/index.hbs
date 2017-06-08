@@ -1,0 +1,47 @@
+
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! The big featured header on the homepage, with the site logo and description }}
+
+
+{{> teaser}}
+
+<header class="blog-header">
+    {{> blog-header}}
+    {{> nav}}
+</header>
+
+<script src="{{asset "js/teaser.js"}}"></script>
+
+{{! The main content area on the homepage }}
+<main class="content" role="main">
+
+    <h5 class="index-headline featured"><span>Featured</span></h5>
+
+    <div class="container featured">
+        {{#foreach page.posts}}
+            {{#if featured}}
+              {{> summary}}
+            {{/if}}
+        {{/foreach}}
+    </div>
+
+    <h5 class="index-headline normal"><span>Latest</span></h5>
+
+    <div class="cf frame">
+    {{#foreach page.posts}}
+        {{#unless featured}}
+            {{> summary}}
+        {{/unless}}
+    {{/foreach}}
+    </div>
+
+    {{!! After all the posts, we have the previous/next pagination links }}
+    {{pagination}}
+
+</main>
+
+{{> footer}}

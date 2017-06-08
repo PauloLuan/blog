@@ -1,0 +1,37 @@
+
+
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! The big featured header on the homepage, with the site logo and description }}
+
+{{> teaser}}
+
+<header class="blog-header">
+  {{> blog-header}}
+</header>
+ 
+<script src={{asset "js/teaser.js"}}> </script>
+
+{{! The main content area on the homepage }}
+<main class="content" role="main">
+    
+    <a href="/">Back to Overview</a>
+
+    <h5 class="index-headline normal"><span>Article list for {{page.tag}}</span></h5>
+
+    <div class="cf frame">
+    {{#foreach page.posts}}
+      {{> summary}}
+    {{/foreach}}
+    </div>
+
+
+    {{!! After all the posts, we have the previous/next pagination links }}
+    {{pagination}}
+
+</main>
+
+{{> footer}}
